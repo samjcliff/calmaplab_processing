@@ -1,0 +1,661 @@
+index,species,description
+1,VarName1,
+2,H4N,
+3,VarName3,
+4,H3O,
+5,H318O,
+6,C2H3,
+7,CH2N,
+8,C2H4,
+9,VarName9,
+10,VarName10,
+11,VarName11,
+12,C2H5,ethanol fragm
+13,VarName13,
+14,CH4N,
+15,CH3O,
+16,O2,
+17,HO2,
+18,CH5O,methanol
+19,H3S,
+20,H5O2,water cluster
+21,C3H2,
+22,K,
+23,C3H3,"aromatic, isoprene fragment"
+24,C3H5,
+25,C2H2O,
+26,C2H4N,acetonitrile
+27,C2H3O,
+28,C3H7,propanol fragment + propene
+29,CH2NO,
+30,C2H6N,
+31,VarName31,
+32,C2H5O,acetaldehyde
+33,NO2,
+34,CH4NO,formamide
+35,C2H8N,"ethylamine, dimethylamine"
+36,CH3O2,formic acid
+37,C2H7O,ethanol
+38,VarName38,
+39,VarName39,
+40,HNO2H,HONO (nitrous acid)
+41,HO3,
+42,CH5S,methane thiol
+43,CH5O2,
+44,H2O3,
+45,C4H2,alykl fragment
+46,VarName46,maybe H3O3+
+47,C4H3,alkyl fragment
+48,CH7O2,methanol water cluster
+49,ClH3N,chloramine
+50,C4H4,aromatic fragment
+51,C3HO,
+52,C4H5,1-buten-3-yne
+53,VarName53,
+54,C3H4N,acrylonitrile
+55,C3H3O,
+56,H7O3,water cluster
+57,C4H7,
+58,C3H4O,
+59,C3H6N,
+60,CC3H7,alykl fragment isotope of mz 55
+61,C3H5O,acrolein
+62,C4H9,"butene, fragment of butanol etc"
+63,VarName63,
+64,C2H4NO,Hydroxyacetonitrile
+65,C3H6O,acetone O2+ ionization?
+66,C2H3O2,glyoxal
+67,C3H7O,acetone + propanal
+68,VarName68,
+69,COS,carbonyl sulfide charge transfer (?)
+70,C2H4O2,"acetic acid, oxygenated fragment"
+71,C2H5NOH,acetamide
+72,C2H5O2,acetic acid
+73,C3H9O,propanol
+74,VarName74,DMS charge transfer
+75,CClO,
+76,CH3O3,carbonic acid
+77,C2H7S,"ethane thiol, DMS"
+78,C2H7O2,"ethane diols, acetaldehyde water cluster, ethyl hydroperoxide"
+79,S2,S2 (pesticide)
+80,H2NO3,nitric acid
+81,CH6NO2,formamide water cluster
+82,VarName82,
+83,C2H6Cl,
+84,CH4O3H,formic acid water cluster
+85,C5H5,alkyl fragment
+86,C2H6OH2OH,ethanol water cluster
+87,VarName87,
+88,C4H4N,
+89,C5H6,alkyl fragment
+90,CHClF,
+91,VarName91,
+92,C5H7,"isoprene fragment, cyclopentadiene"
+93,C4H4O,
+94,C4H6N,
+95,C3HO2,carbon suboxide
+96,C4H5O,"C4H3((H2O)), C4H5O"
+97,C5H9,isoprene
+98,C4H8N,
+99,C3H3O2,
+100,C4H7O,methyl vinyl ketone
+101,C5H11,pentanol fragment + pentene
+102,C3H5NOH,acrylamide
+103,C3H5O2,"methyl glyoxal, propenoic acid"
+104,H9O4,
+105,C4H9O,methyl ethyl ketone
+106,C2H4NS,Methylisothiocyanate (metam sodium decomposition prod)
+107,C2H4NO2,nitroethylene
+108,C3H7NOH,Dimethylformamide
+109,C3H7O2,"hydroxy acetone & aldehydes, propanoic acid, C3 esters"
+110,C4H11O,butanol
+111,CS2,
+112,VarName112,
+113,C2H6NO2,Nitroethane
+114,C2ClH2O,
+115,C2H5O3,
+116,C3H8O2H,propane diol
+117,C2H6O3,
+118,C6H6,benzene charge transfer
+119,C2H7O3,acetic acid water cluster
+120,C6H7,benzene
+121,VarName121,
+122,C5H5NH,
+123,VarName123,
+124,C5H5O,cyclopentadienone
+125,C6H9,monoterpene fragment
+126,CCl2,
+127,VarName127,
+128,CHCl2,
+129,VarName129,
+130,C4H3O2,
+131,C5H7O,
+132,C6H11,cyclohexene
+133,C5H10N,
+134,CClF2,
+135,C4H5O2,
+136,C5H9O,
+137,C6H13,
+138,C4H8NO,
+139,C5H12N,
+140,C3H3O3,
+141,C4H7O2,
+142,C5H11O,MBO
+143,C4H10NO,
+144,C5H14N,
+145,C3H5O3,
+146,C4H9O2,
+147,C2H4NO3,
+148,C3H7O3,
+149,C7H7,
+150,H2O4H3O,
+151,C4H10O2H,
+152,C2H6NO3,
+153,C7H8,toluene charge transf
+154,C3H6ClO,
+155,C3H9O3,
+156,C7H9,toluene
+157,C6H6O,
+158,CH4Br,
+159,C5H3O2,Furan ketone
+160,C6H7O,
+161,C7H10H,monoterpene fragment
+162,CH3SO2NH2H,Methanesulfonamide
+163,C2H3Cl2,
+164,CH5SO3,methane sulfonic acid
+165,C5H5O2,"furfural, cyclopentene dione"
+166,C2H9O4,acetic acid + 2H2O
+167,C6H9O,"hexadienal, dimethylfuran"
+168,C7H13,
+169,C5H6O2,
+170,C4H3O3,"maleic anhydride, caproic acid fragment"
+171,C5H7O2,furfuryl alcohol
+172,C6H11O,"cyclohexanone, hexeneones"
+173,C7H15,
+174,VarName174,
+175,C5H10NO,
+176,CCl2F,
+177,C4H5O3,succinic anhydride
+178,C5H9O2,"methyl methacrylate, etc."
+179,C6H13O,
+180,VarName180,
+181,VarName181,
+182,C5H12NO,
+183,C4H7O3,Isoprene ox
+184,C5H11O2,"ethyl propionate, etc."
+185,C3H5O4,
+186,C4H9O3,
+187,C8H9,"styrene, cyclooctotetraene"
+188,C5H13O2,
+189,C3H7O4,
+190,C7H7O,benzaldehyde
+191,C4H11O3,C4-acid water cluster
+192,C8H11,xylene
+193,C2H6NO4,
+194,C2H6Br,
+195,C6H5O2,benzoquinone
+196,C7H9O,"cresols, anisole"
+197,C8H13,6MHO fragment
+198,VarName198,
+199,C3H4Cl2H,Dichloropropene (pesticide)
+200,C2H7O3S,
+201,C6H7O2,Methylfurfural etc
+202,C7H8F,
+203,C7H11O,
+204,C8H15,"MTox fragm, C8 diene"
+205,CH6NO3PH,AMPA (glyphosate degr. prod.)
+206,VarName206,
+207,C5H5O3,
+208,C6H9O2,
+209,C7H13O,
+210,C8H17,
+211,C4H3O4,acetylene dicarboxylic acid
+212,C5H7O3,"C5 tricarbonyl, 3DBE"
+213,C6H11O2,"C6 dicarbonyl, caprolactone"
+214,C7H15O,C7 ketones
+215,CCl3,
+216,C4H5O4,"maleic acid, fumaric acid"
+217,C5H9O3,"C5 keto acids, 2DBE"
+218,C6H13O2,hexanoic acid
+219,C4H7O4,succinic acid
+220,C9H11,"terpene frag, propenyl benzene, methyl styrene, indane"
+221,C7H5O2,
+222,C4H9O4,
+223,C8H9O,acetophenone
+224,C5H10O2H2OH,Valeric acid watercluster
+225,C9H13,trimethyl benzene
+226,C7H6O2,benzoic acid charge transfer?
+227,C7H7NOH,Benzamide
+228,C3H7O5,
+229,C7H7O2,"benzoic acid, hydroxybenzaldehyde"
+230,C8H11O,
+231,C9H15,SQT fragment
+232,C6H6NO2,Nitrobenzene
+233,C6H5O3,Hydroxy benzoquinone etc
+234,C7H9O2,Guaiacol etc
+235,C8H13O,
+236,C9H17,
+237,C6H7O3,
+238,C8H15O,6-MHO
+239,C9H19,
+240,C5H5O4,
+241,C6H9O3,
+242,C10H9,
+243,C7H12O2H,
+244,C8H17O,
+245,C9H21,
+246,VarName246,
+247,C9H7NH,Quinoline
+248,VarName248,
+249,C5H7O4,
+250,C6H11O3,
+251,C10H11,
+252,C7H15O2,
+253,C8H19O,
+254,VarName254,
+255,C9H10N,
+256,C4H5O5,
+257,C5H9O4,
+258,C9H9O,
+259,C6H13O3,
+260,C10H13,Cymenene
+261,C7H17O2,
+262,C4H7O5,
+263,C9H11O,
+264,C10H15,tetramethyl benzene or isobutyl benzene
+265,C7H6NS,benzothiazole
+266,C8H10NO,
+267,C3H6BrO,
+268,C4H9O5,
+269,C8H9O2,
+270,C9H12OH,Cumenol
+271,C10H17,monoterpene
+272,VarName272,
+273,C7H7O3,
+274,C8H11O2,Creosol
+275,C9H15O,Nopinone etc
+276,C10H19,dehydrated menthol
+277,VarName277,
+278,C6H6NO3,Nitrophenol
+279,VarName279,
+280,VarName280,
+281,C6H5O4,
+282,C7H9O3,
+283,C8H13O2,
+284,C9H17O,
+285,C10H21,terpene fragment
+286,VarName286,
+287,VarName287,
+288,VarName288,
+289,CH4I,
+290,C6H7O4,
+291,C8H15O2,hexenyl acetate etc
+292,C9H19O,nonanal
+293,C10H23,
+294,C5H5O5,acetylmalonate
+295,C6H9O4,
+296,C7H13O3,
+297,C8H17O2,
+298,C6H4Cl2,
+299,VarName299,
+300,VarName300,
+301,C6Cl2H5,dichlorobenzene
+302,C6H11S2,
+303,C6H11O4,
+304,C7H15O3,
+305,C8H19O2,
+306,VarName306,
+307,VarName307,
+308,C8H5O3,
+309,C9H9S,methylbenzothiophene
+310,C9H9O2,
+311,C10H13O,estragole
+312,C11H17,SQT fragment
+313,C4H7O3NO2H,MVK nitrate
+314,C9H10O2,
+315,C9H12NO,Dimehtylbenzamide
+316,VarName316,
+317,C4H7O6,
+318,C5H10O5H,
+319,C9H11O2,"benzyl acetate, vinyl guaiacol etc"
+320,C10H15O,"carvone, thymol, etc"
+321,C11H19,
+322,VarName322,
+323,C8H10NO2,Methyoxybenzamide etc
+324,VarName324,
+325,VarName325,
+326,C7H4O4H,
+327,C4H8O6H,
+328,C8H9O3,vanillin etc
+329,C9H13O2,ethyl guaiacol
+330,C10H17O,"camphor, fenchone etc"
+331,C7H7NO3H,nitroanisole
+332,VarName332,
+333,VarName333,
+334,C7H7O4,
+335,C8H11O3,
+336,C9H15O2,norpinonaldehyde etc
+337,C10H19O,monoterpene alcohols
+338,C10H6NO,
+339,C2H6I,
+340,C6H6Br,
+341,C6H4O5H,
+342,C7H9O4,
+343,C8H13O3,
+344,C12H12H,
+345,C9H17O2,
+346,C10H21O,menthol
+347,C11H25,
+348,C6H8NO4,
+349,C6H7O5,
+350,C7H11O4,
+351,C8H15O3,
+352,C9H19O2,
+353,C7H4ClF2,PCBTF fragment
+354,C6H8O5H,
+355,C7H13O4,
+356,C10H12N2H,
+357,C12H17,
+358,C9H20O2H,Nonanediol etc
+359,C9H7O3,
+360,C10H11O2,safrole
+361,C8H19O3,
+362,C12H19,"Triethylbenzene, SQT fragment"
+363,VarName363,
+364,C8H4O4H,
+365,C5H9O6,
+366,C9H8O3H,
+367,C10H13O2,Eugenol etc
+368,C11H17O,
+369,C12H21,
+370,VarName370,
+371,C8H8NO3,
+372,C9H12NO2,
+373,VarName373,
+374,C8H7O4,phthalic acid
+375,VarName375,
+376,C10H15O2,"carvone oxide, dehydr pinonic acid"
+377,C11H19O,methyl camphor etc
+378,VarName378,
+379,C6H4N2O4H,Dinitrobenzene
+380,C8H8O4H,vanillic acid
+381,C12H9O,Dibenzofuran
+382,C9H13O3,
+383,C10H17O2,pinonaldehyde
+384,C11H21O,methylisoborneol
+385,C3H8NO5PH,Glyphosate
+386,VarName386,
+387,VarName387,
+388,C7H8Br,
+389,C7H7O5,
+390,C8H11O4,
+391,C12H11O,
+392,C9H15O3,Norpionic acid
+393,C10H19O2,
+394,C11H23O,
+395,C12H27,
+396,VarName396,
+397,C6H5O6,
+398,C7H9O5,
+399,C8H13O4,Norpinonic acid
+400,C9H17O3,
+401,C10H21O2,
+402,C6H7O6,
+403,C10H7O3,
+404,C7H10O5H,Shikimic acid
+405,C11H10O2H,
+406,C8H14O4H,
+407,C11H14N2H,
+408,C13H18H,
+409,C10H22O2H,Decanediol etc
+410,VarName410,
+411,C6H8O6H,
+412,C10H9O3,
+413,C6H13N2O4,DMNB
+414,C9H21O3,
+415,C13H20H,
+416,VarName416,
+417,VarName417,
+418,C9H6O4H,
+419,C10H10O3H,
+420,C7H14O5H,
+421,C11H14O2H,
+422,C12H19O,
+423,C13H23,
+424,C7H4ClF3,PCBTF frag
+425,C7H4ClF3H,PCBTF
+426,C9H9O4,aspirin?
+427,C10H13O3,
+428,C11H17O2,
+429,C12H21O,Ethylcamphor
+430,C5H12NO4PH,Glufosinate (pesticide)
+431,VarName431,
+432,CH11O10,
+433,C13H11O,Benzophenone
+434,C10H15O3,
+435,C11H19O2,Geranyl formate etc
+436,C12H23O,Geosmin
+437,VarName437,
+438,C8H9O5,
+439,C9H13O4,
+440,C10H17O3,Pinonic acid
+441,C11H21O2,
+442,C12H25O,
+443,C11H7O3,
+444,C12H11O2,
+445,C9H14O4H,Pinic acid
+446,C10H19O3,
+447,C11H23O2,
+448,VarName448,
+449,VarName449,
+450,C11H9O3,
+451,C8H13O5,
+452,C12H13O2,
+453,C9H17O4,
+454,C10H21O3,
+455,C14H21,
+456,C11H25O2,
+457,VarName457,
+458,VarName458,
+459,C11H11O3,
+460,C8H15O5,
+461,C9H19O4,
+462,C13H18OH,Damascenone
+463,C10H23O3,
+464,C14H23,abienol fragment
+465,VarName465,
+466,C13H5O2,
+467,C10H9O4,
+468,VarName468,
+469,C15H13,
+470,C12H17O2,
+471,C13H21O,Ionone
+472,C14H25,
+473,VarName473,
+474,C10H11O4,
+475,C11H15O3,
+476,C12H19O2,Myrtenyl acetate
+477,C13H23O,
+478,VarName478,
+479,C10H13NO3H,MT nitrate
+480,VarName480,
+481,C13H9O2,
+482,C10H13O4,
+483,C11H17O3,
+484,C12H20O2H,Geranyl acetate etc
+485,C13H25O,
+486,VarName486,
+487,VarName487,
+488,C10H15NO3H,MT nitrate
+489,VarName489,
+490,C12H7O3,
+491,C13H11O2,
+492,C10H15O4,
+493,C11H19O3,
+494,C12H23O2,Citronellyl acetate
+495,C13H27O,
+496,C9H9ClO3H,MCPA (herbicide)
+497,VarName497,
+498,C9H13O5,
+499,C10H17O4,MT ox
+500,C11H21O3,
+501,C15H21,aromatic SQTs
+502,C12H25O2,
+503,C7H12ClN5H,"Simazine, carbaryl (herbicide)"
+504,VarName504,
+505,VarName505,
+506,C14H19O,
+507,C15H23,SQT
+508,C6H5IH,Iodobenzene
+509,VarName509,
+510,VarName510,
+511,C12H13O3,
+512,C13H17O2,
+513,C14H21O,
+514,C15H25,sesquiterpene
+515,VarName515,
+516,C12H15O3,
+517,C13H19O2,
+518,C14H23O,
+519,C15H27,SQTs (elemene etc)
+520,VarName520,
+521,C11H13O4,
+522,C12H17O3,
+523,VarName523,oxo-ionol etc
+524,C14H25O,
+525,VarName525,
+526,VarName526,
+527,C10H11O5,
+528,C11H15O4,
+529,C8H18O6H,MEK peroxide
+530,C12H19O3,jasmonic acid
+531,C13H23O2,
+532,C14H27O,
+533,VarName533,
+534,VarName534,
+535,C10H13O5,
+536,C14H12O2H,Benzyl benzoate
+537,C11H17O4,
+538,C12H21O3,
+539,C13H25O2,
+540,C14H29O,
+541,C13H11O3,
+542,C12H23O3,
+543,VarName543,
+544,C14H17O2,
+545,C15H21O,
+546,C16H25,diterpene diol fragment
+547,C7H8I,
+548,VarName548,
+549,C12H27O3,
+550,C8H6Cl2O3H,"Dicamba, Dichlorophenoxyacetic acid (pesticide)"
+551,VarName551,
+552,VarName552,
+553,C13H17O3,
+554,C14H21O2,
+555,C15H25O,SQt ox
+556,C16H29,"Patchoulene, farnesol"
+557,C6H19O3Si3,D3
+558,C13H19O3,
+559,C14H23O2,
+560,C15H27O,"Cadinol, other sesquiterpenoids"
+561,C5H17O4Si3,D3 fragm watercluster
+562,C13H21O3,
+563,C14H25O2,
+564,C15H29O,
+565,C10H19N5OH,Prometon (herbicide)
+566,VarName566,
+567,C13H23O3,
+568,C14H27O2,
+569,VarName569,
+570,C12H21O4,
+571,C13H25O3,
+572,VarName572,
+573,VarName573,
+574,VarName574,
+575,C10H15NO5H,MT org nitrate
+576,C9H16ClN5H,Propazine (herbicide)
+577,VarName577,
+578,VarName578,
+579,VarName579,
+580,C12H23O4,
+581,C17H27,
+582,C9H13NO6H,MT org nitrate
+583,VarName583,
+584,C13H28O3,
+585,C9H10Cl2N2OH,Diuron (pesticide)
+586,VarName586,
+587,VarName587,
+588,C13H29O3,
+589,VarName589,
+590,VarName590,
+591,C15H23O2,SQT ox
+592,C12H27O4,
+593,C17H31,
+594,C14H21O3,
+595,C15H25O2,SQT ox
+596,C16H29O,
+597,VarName597,
+598,C16H15O2,
+599,VarName599,
+600,C15H27O2,
+601,C16H31O,
+602,C6H18O3Si3H2OH,D3 watercluster
+603,C15H29O2,
+604,C10H19N5SH,Prometryn (herbicide)
+605,C5H19O5Si3,D3 fragm watercluster
+606,C18H27,
+607,C4H17O6Si3,D3 fragm +2H2O
+608,C13H25O4,
+609,C18H29,
+610,C10H15NO6H,MT org nitrate
+611,VarName611,
+612,C3H15O7Si3,
+613,C14H31O3,
+614,VarName614,
+615,C16H25O2,
+616,VarName616,
+617,C6H7O9Si,
+618,VarName618,
+619,VarName619,
+620,VarName620,
+621,C15H25O3,SQT ox
+622,C16H29O2,
+623,C17H33O,
+624,C15H27O3,
+625,C16H31O2,
+626,VarName626,
+627,C12H14Cl2N2H,Paraquat (pesticide)
+628,C19H29,
+629,C18H26OH,
+630,C19H31,
+631,C15H33O3,
+632,C16H27O3,
+633,C18H35O,
+634,C17H33O2,
+635,C15H27O4,
+636,C20H31,
+637,C20H32H,Diterpenes
+638,C16H35O3,
+639,C17H25O3,
+640,C7H21O4Si4,D4 fragment
+641,C6H19O5Si4,D4 fragment water cluster
+642,VarName642,D4 fragment
+643,C17H37O3,
+644,C8H25O4Si4,D4
+645,C7H23O5Si4,D4 fragment water cluster
+646,C10H15O7Si2,siloxane fragm
+647,C18H39O3,
+648,VarName648,
+649,C12H21N2O3PSH,Diazinon (pesticide)
+650,C8H27O5Si4,D4  water cluster
+651,C7H25O6Si4,D4 fragment water cluster x2
+652,C4H19O9Si4,D4 fragm + 5H2O
+653,C9H27O5Si5,D5 fragment
+654,C8H25O6Si5,D5 fragment water cluster
+655,C7H23O7Si5,D5 fragm +2H2O
+656,C10H31O5Si5,D5
+657,C9H29O6Si5,D5 fragment water cluster
+658,C11H33O6Si6,D6 fragment
+659,C12H37O6Si6,D6
+660,C11H35O7Si6,D6 fragm +H2O

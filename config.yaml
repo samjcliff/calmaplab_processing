@@ -1,0 +1,89 @@
+# CalMAPLab Unified Pipeline Configuration
+# ==========================================
+# 
+# Copy this file and adjust paths for your system.
+# All paths can be absolute or relative to the working directory.
+
+# =============================================================================
+# Path Configuration
+# =============================================================================
+paths:
+  
+  # GPS paths
+  gps_raw: "data/raw/vandaq"              # Raw VanDAQ files
+  gps_processed: "data/processed/gps"     # Processed GPS output
+  roads_cache: "data/processed/roads"     # OSM road segment cache
+  
+  # VOCUS paths
+  vocus_h5_raw: "data/raw/vocus"          # Raw .h5 files by date folder
+  vocus_cps: "data/processed/vocus_cps"   # CPS output
+  vocus_cal_stats: "data/calibrations/vocus/cal_stats"
+  vocus_diagnostics: "data/processed/diagnostics"
+  
+  # VanDAQ paths
+  vandaq_raw: "data/raw/vandaq"           # Same as gps_raw typically
+  
+  # Calibration reference files
+  cal_standards: "data/reference/calibration_standards.csv"
+  ksens_standards: "data/reference/ksens_standards.csv"
+  NO_NO2_NOx_O3_cal: "data/calibrations/nox_o3/cal_stats"
+  CO_N2O_CH4_C2H6_CO2_cal: "data/calibrations/aeris_licor/cal_stats"
+  
+  # VOCUS column configuration
+  peak_columns: "data/reference/vocus_peak_columns.csv"
+  tps_columns: "data/reference/vocus_tps_columns.csv"
+  
+  # QC and processing reference files
+  flags_file: "data/reference/qc_flags.csv"
+  lag_times: "data/reference/lag_times.csv"
+  aclima_fields: "data/reference/aclima_fields.csv"
+  exclusion_poly: "data/reference/aclima_remove.geojson"
+  
+  # Output paths
+  output_l2: "data/processed/complete"
+  output_aclima: "data/processed/for_aclima"
+  output_targets: "data/calibrations/targets"
+
+# =============================================================================
+# Processing Configuration
+# =============================================================================
+config:
+  # Organization info
+  org: "UCB"
+  revision: "r1"
+  
+  # GPS pipeline parameters
+  kalman_process_noise: 1.0e-10
+  kalman_measurement_noise: 1.0e-9
+  kalman_max_displacement_m: 15.0
+  max_interpolation_gap_s: 5.0
+  segment_length_m: 30.0
+  max_match_distance_m: 15.0
+  max_match_angle_deg: 60.0
+  
+  # VOCUS H5 parameters
+  tof_extraction_freq: 24990.0
+  
+  # VOCUS calibration parameters
+  cal_cylinder_no: "CC515288"    # Active calibration cylinder
+  default_k: 2.5                 # Default k_PTR value
+  cal_step_flows: [0, 2, 5, 10]  # Calibration flow steps (sccm)
+  flow_tolerance: 0.1
+  zero_flow_thresh: 450.0
+  min_cal_samples: 70
+  cal_window_samples: 60
+  
+  # Instrument pipeline parameters
+  ptr_prefixes: "HCOKSNV"        # Regex prefixes for PTR ions
+  output_types: ["L2a"]
+  target_cylinders: ["DT0057232","DT0057232", "CC515288"]           # Target cylinder IDs for in-drive cal
+  target_instruments: ["Aeris_N2O_CO", "Aeris_CH4_C2H6", "Vocus-PTR-ToF"]         # Instruments for target processing
+  vocus_target_flow: 1.0
+  target_length: 60
+  value_precision: 5
+  coord_precision: 5
+  
+  # Processing options
+  verbose: true
+  use_cached_roads: true
+  generate_diagnostics: true
