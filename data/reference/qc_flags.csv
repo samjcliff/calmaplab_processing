@@ -18,7 +18,7 @@ Licor_7200_CO2,MeasFlowRate,8,12,Alarm,2
 Licor_7200_CO2,AvgTemp,5,35,Alarm,4
 DMS_PAX_BlackCarbon,BC_mass,-1,100000,Alarm,2
 DMS_PAX_BlackCarbon,mode,0,0,Alarm,4
-MAGEE_AE33_Aethalometer,BC6,-1000,100000,Alarm,2
+MAGEE_AE33_Aethalometer,BC6,-1000,1000000,Alarm,2
 2BTech_211_G,O3,0,100000,Alarm,2
 2BTech_211_G,cell_a_flow,950,1100,Alarm,4
 2BTech_211_G,cell_b_flow,1000,1150,Alarm,8
