@@ -50,6 +50,60 @@ CONCENTRATION_RANGE = None
 
 
 # =============================================================================
+# AMT Journal Style Setup
+# =============================================================================
+
+def setup_amt_style():
+    """Set up matplotlib style matching AMT journal requirements."""
+    plt.rcParams.update({
+        # Font settings
+        'font.family': 'sans-serif',
+        'font.sans-serif': ['Arial', 'Helvetica', 'DejaVu Sans'],
+        'font.size': 9,
+        'axes.titlesize': 9,
+        'axes.labelsize': 9,
+        'xtick.labelsize': 8,
+        'ytick.labelsize': 8,
+        'legend.fontsize': 7,
+        
+        # Spine and tick settings
+        'axes.linewidth': 0.5,
+        'axes.edgecolor': 'black',
+        'axes.labelcolor': 'black',
+        'xtick.color': 'black',
+        'ytick.color': 'black',
+        'xtick.major.width': 0.5,
+        'ytick.major.width': 0.5,
+        'xtick.minor.width': 0.3,
+        'ytick.minor.width': 0.3,
+        'xtick.major.size': 3,
+        'ytick.major.size': 3,
+        'xtick.minor.size': 1.5,
+        'ytick.minor.size': 1.5,
+        'xtick.direction': 'in',
+        'ytick.direction': 'in',
+        
+        # Remove top and right spines
+        'axes.spines.top': False,
+        'axes.spines.right': False,
+        
+        # Grid settings
+        'axes.grid': False,
+        
+        # Legend
+        'legend.frameon': False,
+        'legend.borderpad': 0.3,
+        'legend.handletextpad': 0.4,
+        
+        # Figure settings
+        'figure.dpi': 150,
+        'savefig.dpi': 300,
+        'savefig.bbox': 'tight',
+        'savefig.pad_inches': 0.05,
+    })
+
+
+# =============================================================================
 # Data loading and preparation
 # =============================================================================
 
@@ -279,8 +333,8 @@ def plot_panel(
     # Add basemap (attribution disabled - added once at figure level)
     cx.add_basemap(ax, source=TILE_PROVIDER, zoom=17, attribution=False)
 
-    # Style
-    ax.set_title(title, fontsize=9, pad=3)
+    # Style - AMT format for title
+    ax.set_title(title, fontsize=9, fontweight='normal', pad=3)
     ax.set_axis_off()
 
 
@@ -336,7 +390,7 @@ def create_figure(gps_data: pd.DataFrame, output_dir: Path) -> None:
 
     print(f"Concentration range: {vmin:.1f} - {vmax:.1f}")
 
-    # Create figure with custom layout
+    # Create figure with custom layout (7" width for AMT double column)
     fig = plt.figure(figsize=(7, 5), dpi=150)
 
     # Row heights and spacing
@@ -344,7 +398,6 @@ def create_figure(gps_data: pd.DataFrame, output_dir: Path) -> None:
     row_a_height = 0.40
     row_b_bottom = 0.08
     row_b_height = 0.40
-    label_height = 0.04
 
     # Panel widths for row a (3 panels + 2 arrow spaces)
     panel_width = 0.28
@@ -403,16 +456,23 @@ def create_figure(gps_data: pd.DataFrame, output_dir: Path) -> None:
         ax_h3, h3_hexagons, "H3 index (R=12)", BBOX, vmin, vmax, "polygon"
     )
 
-    # Add row labels
+    # Add row labels - AMT style (bold, consistent with other figures)
     fig.text(
         0.02, row_a_bottom + row_a_height + 0.02,
-        "a)   Processing pipeline",
-        fontsize=11, fontweight="bold", va="bottom"
+        "(a)", fontsize=10, fontweight="bold", va="bottom"
     )
     fig.text(
+        0.06, row_a_bottom + row_a_height + 0.02,
+        "Processing pipeline", fontsize=9, fontweight="normal", va="bottom"
+    )
+    
+    fig.text(
         0.02, row_b_bottom + row_b_height + 0.02,
-        "b)   Aggregation products by drive pass or time period",
-        fontsize=11, fontweight="bold", va="bottom"
+        "(b)", fontsize=10, fontweight="bold", va="bottom"
+    )
+    fig.text(
+        0.06, row_b_bottom + row_b_height + 0.02,
+        "Aggregation products by drive pass or time period", fontsize=9, fontweight="normal", va="bottom"
     )
 
     # Add scalebar below the first panel of row b (200 m)
@@ -455,7 +515,7 @@ def create_figure(gps_data: pd.DataFrame, output_dir: Path) -> None:
         )
         fig.add_artist(tick)
     
-    # Add label
+    # Add label - AMT style font
     fig.text(
         scalebar_x_start + scalebar_width_fig / 2,
         scalebar_y + 0.012,
@@ -465,7 +525,7 @@ def create_figure(gps_data: pd.DataFrame, output_dir: Path) -> None:
         fontsize=8
     )
 
-    # Add attribution (aligned with scalebar)
+    # Add attribution (aligned with scalebar) - smaller, grey
     fig.text(
         0.98, scalebar_y,
         "© OpenStreetMap contributors © CARTO",
@@ -495,6 +555,10 @@ def create_figure(gps_data: pd.DataFrame, output_dir: Path) -> None:
 
 def main():
     """Main function to run the visualization pipeline."""
+    
+    # Set up AMT journal style
+    setup_amt_style()
+    
     print(f"Loading data from: {GPS_DATA_PATH}")
 
     if not GPS_DATA_PATH.exists():
@@ -517,7 +581,7 @@ def main():
         gps_data = add_simulated_concentration(gps_data)
 
     # Create figure
-    create_figure(gps_data, OUTPUT_DIR)
+    create_figure(gps_data, output_dir=OUTPUT_DIR)
 
 
 if __name__ == "__main__":
