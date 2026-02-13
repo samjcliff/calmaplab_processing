@@ -32,7 +32,7 @@ warnings.filterwarnings("ignore", category=FutureWarning)
 GPS_DATA_PATH = Path(
     "F:/calmaplab_processing/data/processed/gps/processed_gps_2025-10-08.parquet"
 )
-OUTPUT_DIR = Path("D:/mobile_lab/plots/")
+OUTPUT_DIR = Path("F:/calmaplab_processing/figures/")
 
 #Bounding box for visualization (adjust to your study area)
 BBOX = {
@@ -475,8 +475,8 @@ def create_figure(gps_data: pd.DataFrame, output_dir: Path) -> None:
     # Save figure
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    pdf_path = output_dir / "gps_processing_pipeline_python.pdf"
-    png_path = output_dir / "gps_processing_pipeline_python.png"
+    pdf_path = output_dir / "gps_processing_pipeline_vis.pdf"
+    png_path = output_dir / "gps_processing_pipeline_vis.png"
 
     print(f"Saving to {pdf_path}...")
     fig.savefig(pdf_path, format="pdf", bbox_inches="tight", pad_inches=0.1)
