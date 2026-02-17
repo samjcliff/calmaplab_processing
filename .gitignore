@@ -22,6 +22,8 @@ data/reference/*.parquet
 *.rds
 *.RDS
 *.feather
+*.duckdb
+*.duckdb.wal
 
 # Large CSVs (keep small reference CSVs by not ignoring data/reference/*.csv)
 data/**/*.csv
@@ -31,6 +33,8 @@ data/**/*.csv
 data/**/*.geojson
 !data/reference/*.geojson
 
+# archive
+manuscript/target_plot.py
 # =============================================================================
 # Python
 # =============================================================================
