@@ -6,23 +6,7 @@ The unified workflow for processing mobile air quality monitoring data from the 
 
 This pipeline integrates four CalMAPLab processing stages into a single coordinated workflow:
 
-```
-┌─────────────┐     ┌──────────────┐
-│ Raw GPS     │────▶│ GPS Pipeline │────┐
-│ (VanDAQ)    │     │              │    │
-└─────────────┘     └──────────────┘    │
-                                        │    ┌──────────────────┐
-┌─────────────┐     ┌──────────────┐    ├───▶│                  │
-│ VOCUS .h5   │────▶│ VOCUS H5     │────┤    │ Instrument       │────▶ Finalised Output
-│ files       │     │ Processor    │    │    │ Pipeline         │
-└─────────────┘     └──────────────┘    │    │                  │
-                          │             │    └──────────────────┘
-                          ▼             │              ▲
-                    ┌──────────────┐    │              │
-                    │ VOCUS        │────┘              │
-                    │ Calibration  │───────────────────┘
-                    └──────────────┘    (cal stats)
-```
+![CalMAPLab processing pipeline](processing_pipeline.png)
 
 ### Pipeline Stages
 
