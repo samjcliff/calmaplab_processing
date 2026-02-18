@@ -1,10 +1,10 @@
 # CalMAPLab Unified Data Processing Pipeline
 
-A unified orchestration layer for processing mobile air quality monitoring data from the CalMAPLab platform.
+The unified workflow for processing mobile air quality monitoring data from the CalMAPLab platform.
 
 ## Overview
 
-This pipeline integrates four processing stages into a single coordinated workflow:
+This pipeline integrates four CalMAPLab processing stages into a single coordinated workflow:
 
 ```
 ┌─────────────┐     ┌──────────────┐
@@ -13,7 +13,7 @@ This pipeline integrates four processing stages into a single coordinated workfl
 └─────────────┘     └──────────────┘    │
                                         │    ┌──────────────────┐
 ┌─────────────┐     ┌──────────────┐    ├───▶│                  │
-│ VOCUS .h5   │────▶│ VOCUS H5     │────┤    │ Instrument       │────▶ Complete Output
+│ VOCUS .h5   │────▶│ VOCUS H5     │────┤    │ Instrument       │────▶ Finalised Output
 │ files       │     │ Processor    │    │    │ Pipeline         │
 └─────────────┘     └──────────────┘    │    │                  │
                           │             │    └──────────────────┘
@@ -27,7 +27,7 @@ This pipeline integrates four processing stages into a single coordinated workfl
 ### Pipeline Stages
 
 1. **GPS Pipeline** (`gps_pipeline.py`)
-   - Loads raw GPS data from VanDAQ format
+   - Loads raw GPS data from VanDAQ raw drive file
    - Applies Kalman smoothing with RTS smoother
    - Downloads/caches road network from OpenStreetMap
    - Matches GPS points to road segments (direction-aware)
@@ -35,10 +35,10 @@ This pipeline integrates four processing stages into a single coordinated workfl
    - Outputs GeoParquet with segment geometries
 
 2. **VOCUS H5 Pipeline** (`vocus_h5_processor.py`)
-   - Loads raw VOCUS PTR-ToF .h5 files
-   - Converts counts to counts-per-second (CPS)
+   - Loads raw VOCUS PTR-ToF-MS HR-integrated .h5 files 
+   - Converts counts-per-extraction to counts-per-second
    - Extracts timestamps and valve states
-   - Outputs processed CSV files
+   - Outputs processed Parquet files
 
 3. **VOCUS Calibration Pipeline** (`vocus_calibration.py`)
    - Identifies calibration windows
@@ -48,28 +48,24 @@ This pipeline integrates four processing stages into a single coordinated workfl
    - Generates diagnostic plots
 
 4. **Instrument Pipeline** (`instrument_pipeline.py`)
-   - Loads VanDAQ and VOCUS data
+   - Loads VanDAQ drive file and VOCUS cps data
    - Applies instrument-specific lag corrections
    - Flags data based on QC thresholds
    - Joins with processed GPS data
    - Applies calibrations (slope/intercept interpolation)
-   - Generates Aclima-format L1/L2 output files
+   - Generates finalised output files
 
 ## Installation
 
 ### Dependencies
 
 ```bash
-pip install pandas numpy scipy geopandas shapely h5py pyarrow numba requests pyyaml
+pip install pandas numpy scipy geopandas shapely h5py pyarrow numba requests pyyaml matplotlib
 ```
-
-Optional dependencies:
-- `matplotlib` - for diagnostic plots
-- `pyreadr` or `rpy2` - for reading R data files
 
 ### File Structure
 
-Place all four pipeline modules in your Python path:
+Place all pipeline modules and configuration file into your Python path:
 ```
 project/
 ├── calmaplab_pipeline.py    # Unified orchestrator
@@ -80,95 +76,11 @@ project/
 └── config.yaml              # Your configuration
 ```
 
-## Usage
-
-### Command Line
-
-```bash
-# Process a single date
-python calmaplab_pipeline.py 2025-07-15 --config config.yaml
-
-# Process a date range
-python calmaplab_pipeline.py 2025-07-01 2025-07-31 --config config.yaml
-
-# Run specific stages only
-python calmaplab_pipeline.py 2025-07-15 --config config.yaml --stages gps vocus_h5
-
-# Skip existing outputs (incremental processing)
-python calmaplab_pipeline.py 2025-07-01 2025-07-31 --config config.yaml --skip-existing
-
-# Quiet mode
-python calmaplab_pipeline.py 2025-07-15 --config config.yaml --quiet
-```
-
-### Python API
-
-```python
-from calmaplab_pipeline import (
-    CalMAPLabPipeline, 
-    UnifiedPaths, 
-    UnifiedConfig,
-    ProcessingStage
-)
-
-# Configure paths
-paths = UnifiedPaths(
-    base_raw="/data/calmap/raw",
-    base_processed="/data/calmap/processed",
-    cal_standards="/ref/calibration_standards.csv",
-    peak_columns="/ref/vocus_peak_columns.csv",
-    tps_columns="/ref/vocus_tps_columns.csv",
-    flags_file="/ref/qc_flags.csv",
-    lag_times="/ref/lag_times.csv",
-    aclima_fields="/ref/aclima_fields.csv",
-)
-
-# Configure processing
-config = UnifiedConfig(
-    cal_cylinder_no="CC524064",
-    org="UCB",
-    revision="r1"
-)
-
-# Create and run pipeline
-pipeline = CalMAPLabPipeline(paths, config)
-
-# Process single date
-results = pipeline.run("2025-07-15")
-
-# Process date range
-results = pipeline.run_batch(
-    ["2025-07-15", "2025-07-16", "2025-07-17"],
-    skip_existing=True
-)
-
-# Get summary
-print(pipeline.summary())
-```
-
-### Running Individual Stages
-
-```python
-from calmaplab_pipeline import ProcessingStage
-
-# Run only GPS and VOCUS H5 stages
-results = pipeline.run(
-    "2025-07-15",
-    stages=[ProcessingStage.GPS, ProcessingStage.VOCUS_H5]
-)
-
-# Run only calibration (assumes VOCUS CPS files exist)
-results = pipeline.run(
-    "2025-07-15",
-    stages=[ProcessingStage.VOCUS_CAL]
-)
-```
-
 ## Configuration
 
 ### YAML Configuration File
 
-Create a `config.yaml` file (see `config_example.yaml` for template):
+Create a `config.yaml` file (see example for template):
 
 ```yaml
 paths:
@@ -188,7 +100,7 @@ config:
 
 | Path | Description | Required For |
 |------|-------------|--------------|
-| `gps_raw` | Raw VanDAQ GPS files | GPS stage |
+| `gps_raw` | Raw VanDAQ geolocated drive output files | GPS stage |
 | `gps_processed` | Processed GPS output | GPS, Instrument |
 | `vocus_h5_raw` | Raw VOCUS .h5 files | VOCUS H5 stage |
 | `vocus_cps` | Processed CPS files | VOCUS H5, Cal, Instrument |
@@ -211,14 +123,42 @@ config:
 | `default_k` | 2.5 | Default k_PTR value |
 | `ptr_prefixes` | "HCOKSNV" | Regex prefixes for PTR ions |
 
+
+## How to run
+### All stages
+
+```python
+from calmaplab_pipeline import CalMAPLabPipeline
+
+pipeline = CalMAPLabPipeline.from_yaml("config.yaml")
+results = pipeline.run("2026-01-30")
+```
+
+### Individual Stages
+
+```python
+from calmaplab_pipeline import ProcessingStage
+
+# Run only GPS and VOCUS H5 stages
+results = pipeline.run(
+    "2025-07-15",
+    stages=[ProcessingStage.GPS, ProcessingStage.VOCUS_H5]
+)
+
+# Run only calibration (assumes VOCUS CPS files exist)
+results = pipeline.run(
+    "2025-07-15",
+    stages=[ProcessingStage.VOCUS_CAL]
+)
+```
+
 ## Output Files
 
 ### GPS Stage
 - `processed_gps_{date}.parquet` - GeoParquet with road-matched GPS
 
 ### VOCUS H5 Stage
-- `{date}_cps.csv` - Wide-format CPS data
-- `{date}_cps_long.csv` - Long-format for pipeline integration
+- `{date}_cps.parquet` - Long-format Parquet for pipeline integration
 
 ### VOCUS Calibration Stage
 - `{date}_calstats.csv` - Calibration statistics (slopes, intercepts)
@@ -228,24 +168,8 @@ config:
 
 ### Instrument Stage
 - `UCB_complete_{date}_L2a_r1.csv` - Full 1Hz calibrated data
-- `UCB_{date}_L2a_r1.csv` - Aclima-format L2 output
+- `UCB_{date}_L2a_r1.csv` - Aclima-format L2 output for SMMI project
 - `{date}_targets.csv` - Target calibration results
-
-## Error Handling
-
-The pipeline handles errors gracefully:
-
-```python
-results = pipeline.run_batch(date_list, stop_on_error=False)
-
-# Check for errors
-for date, result in results.items():
-    if 'error' in result:
-        print(f"{date}: {result['error']}")
-    for stage, data in result.get('stages', {}).items():
-        if isinstance(data, dict) and 'error' in data:
-            print(f"{date} {stage}: {data['error']}")
-```
 
 ## Extending the Pipeline
 
@@ -270,3 +194,5 @@ class ExtendedPipeline(CalMAPLabPipeline):
 ```
 
 ## License
+
+Licensed under the BSD 3-Clause License (see LICENSE).
