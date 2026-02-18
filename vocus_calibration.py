@@ -17,6 +17,7 @@ Typical integration with instrument_pipeline.py.
 Author: S. J. Cliff
 """
 
+from duckdb import df
 import numpy as np
 import pandas as pd
 from pathlib import Path
@@ -287,6 +288,51 @@ def load_calibration_standards(filepath: str) -> pd.DataFrame:
     print(f"    Loaded standards for {cs_long['species'].nunique()} species")
     
     return cs_long
+
+def detect_cal_cylinder(
+    df: pd.DataFrame,
+    d5_column: str = "C10H31O5Si5",
+    d5_threshold: float = 1000.0
+) -> str:
+    """
+    Auto-detect calibration cylinder based on D5 signal during calibration.
+    
+    D5 (C10H31O5Si5) is only present in CC524064, so high counts
+    during calibration indicate that cylinder.
+    
+    Parameters
+    ----------
+    df : pd.DataFrame
+        CPS data
+    d5_column : str
+        Column name for D5 species
+    d5_threshold : float
+        Counts threshold — above = CC524064, below = CC515288
+    
+    Returns
+    -------
+    str
+        Detected cylinder number
+    """
+    # Use periods where cal_valve is on as the cal period
+    cal_mask = df['cal_valve'] == 1
+    
+    if cal_mask.sum() == 0:
+        raise ValueError("Cannot auto-detect cylinder: no cal_valve=1 periods found")
+    
+    if d5_column not in df.columns:
+        raise ValueError(f"Cannot auto-detect cylinder: column '{d5_column}' not found")
+    
+    d5_mean = df.loc[cal_mask, d5_column].mean()
+    
+    if d5_mean > d5_threshold:
+        cylinder = "CC524064"
+    else:
+        cylinder = "CC515288"
+    
+    print(f"  Auto-detected cylinder: {cylinder} (D5 mean during cal = {d5_mean:.1f} cts)")
+    
+    return cylinder
 
 
 # =============================================================================
@@ -782,6 +828,10 @@ def process_vocus_calibrations(
     # Load CPS data
     df = load_cps_data(str(input_file))
     outputs['cps_data'] = df
+
+    # Auto-detect cylinder if not specified
+    if not config.cal_cylinder_no:
+        config.cal_cylinder_no = detect_cal_cylinder(df)
     
     # Check if calibration was performed (cal_flow has variation)
     if df['cal_flow'].std() <= 0.1:
@@ -991,8 +1041,9 @@ if __name__ == "__main__":
     )
     parser.add_argument(
         '--cylinder',
-        required=True,
-        help='Calibration cylinder number'
+        required=False,
+        default="",
+        help='Calibration cylinder number (auto-detected from D5 if omitted)'
     )
     parser.add_argument(
         '--ksens-standards',
