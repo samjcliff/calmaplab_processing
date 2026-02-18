@@ -155,6 +155,10 @@ results = pipeline.run(
 - `UCB_{date}_L2a_r1.csv` - Aclima-format L2 output for SMMI project
 - `{date}_targets.csv` - Target calibration results
 
+## GPS processing visualisation example
+
+![GPS visualisation example](figures/gps_processing_pipeline_vis.png)
+
 ## Extending the Pipeline
 
 ### Adding Custom Stages
