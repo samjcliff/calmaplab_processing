@@ -7,7 +7,7 @@
 data/raw/
 data/processed/
 data/calibrations/
-
+tiles/
 # Keep reference files but ignore large ones
 data/reference/*.h5
 data/reference/*.parquet
@@ -32,6 +32,12 @@ data/**/*.csv
 # GeoJSON can be large
 data/**/*.geojson
 !data/reference/*.geojson
+
+# Figure reproduction bundle (curated inputs for manuscript figures)
+!data/figure_inputs/
+!data/figure_inputs/**
+!data/figure_inputs/**/*.parquet
+!data/figure_inputs/**/*.csv
 
 # archive
 manuscript/target_plot.py
@@ -84,6 +90,7 @@ env/
 # OS files
 # =============================================================================
 .DS_Store
+._*
 Thumbs.db
 desktop.ini
 

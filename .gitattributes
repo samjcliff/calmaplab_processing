@@ -1,0 +1,2 @@
+# Victron VRM exports for electrical performance figure reproduction
+data/figure_inputs/electrical_performance/victron/*.csv filter=lfs diff=lfs merge=lfs -text

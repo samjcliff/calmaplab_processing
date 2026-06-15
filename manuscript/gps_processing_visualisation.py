@@ -24,14 +24,15 @@ Dependencies:
                h3, pyproj
 
 Usage:
-    python gps_processing_visualiation.py \\
-        --gps-file data/processed/gps/processed_gps_2025-10-08.parquet \\
+    python manuscript/gps_processing_visualisation.py \\
+        --gps-file data/figure_inputs/gps/processed_gps_2025-10-08_bbox.parquet \\
         --output-dir figures/
 """
 
 import argparse
 import os
 import warnings
+from pathlib import Path
 import contextily as cx
 import geopandas as gpd
 import h3
@@ -44,6 +45,9 @@ from matplotlib.patches import FancyArrowPatch
 from shapely.geometry import Polygon
 
 warnings.filterwarnings("ignore", category=FutureWarning)
+
+REPO_ROOT = Path(__file__).resolve().parents[1]
+FIGURE_INPUTS = REPO_ROOT / "data/figure_inputs"
 
 # =============================================================================
 # Configuration
@@ -406,13 +410,13 @@ def parse_args():
     )
     parser.add_argument(
         "--gps-file",
-        default="data/processed/gps/processed_gps_2025-10-08.parquet",
+        default=str(FIGURE_INPUTS / "gps/processed_gps_2025-10-08_bbox.parquet"),
         help="Path to processed GPS Parquet file "
-             "(default: data/processed/gps/processed_gps_2025-10-08.parquet)",
+             "(default: data/figure_inputs/gps/processed_gps_2025-10-08_bbox.parquet)",
     )
     parser.add_argument(
         "--output-dir",
-        default="figures/",
+        default=str(REPO_ROOT / "figures"),
         help="Output directory (default: figures/)",
     )
     return parser.parse_args()

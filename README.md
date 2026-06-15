@@ -155,9 +155,55 @@ results = pipeline.run(
 - `UCB_{date}_L2a_r1.csv` - Aclima-format L2 output for SMMI project
 - `{date}_targets.csv` - Target calibration results
 
-## GPS processing visualisation example
+## Figure reproduction
 
-![GPS visualisation example](figures/gps_processing_pipeline_vis.png)
+Manuscript figures can be regenerated from curated inputs in `data/figure_inputs/` without the full campaign dataset. After cloning, fetch Git LFS objects first:
+
+```bash
+git lfs pull
+```
+
+Additional figure dependencies:
+
+```bash
+pip install statsmodels contextily h3 pyproj
+```
+
+### Bundled inputs
+
+| File | Size | Used by |
+|------|------|---------|
+| `data/figure_inputs/electrical_performance/victron/*.csv` (3 files) | ~71 MB (Git LFS) | Electrical performance figure |
+| `data/figure_inputs/electrical_performance/amb_temp_5min.parquet` | ~200 KB | Electrical performance figure |
+| `data/figure_inputs/gps/processed_gps_2025-10-08_bbox.parquet` | ~110 KB | GPS processing figure |
+
+Full pipeline outputs (`data/processed/`, `data/raw/`, DuckDB) remain external and are not required for these figures.
+
+### Electrical performance
+
+![Electrical performance](figures/electrical_performance.png)
+
+```bash
+python manuscript/electrical_performance.py
+```
+
+Outputs `figures/electrical_performance.{pdf,png}`.
+
+To re-derive ambient temperature from full L2 parquets instead of the bundled file:
+
+```bash
+python manuscript/electrical_performance.py --data-dir data/processed/complete
+```
+
+### GPS processing pipeline
+
+![GPS processing visualisation](figures/gps_processing_pipeline_vis.png)
+
+```bash
+python manuscript/gps_processing_visualisation.py
+```
+
+Outputs `figures/gps_processing_pipeline_vis.{pdf,png}`. Requires network access for CartoDB basemap tiles via `contextily`.
 
 ## Extending the Pipeline
 
